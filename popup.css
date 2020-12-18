@@ -1,0 +1,14 @@
+
+body,html{
+    background: rgb(146, 232, 243);
+    width: 350px;
+    height: 560px;
+}
+#hello{
+   font-size: 20px;
+   font-style: italic;
+   font-weight: bold;
+   font-family: "Pacifico",cursive;
+   padding: 23px;
+
+}
