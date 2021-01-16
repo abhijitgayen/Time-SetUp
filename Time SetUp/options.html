@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Settings-(Time SetUp)</title>
+    <style>
+    body{
+    background-image:linear-gradient(rgb(250, 250, 253),rgba(56, 59, 59, 0.021),rgb(128, 234, 241));
+        }
+     #main{
+    font-size: 18px;
+    font-family: cursive;
+    color: rgba(5, 5, 167, 0.822);
+    text-shadow:1px 2px black;
+}
+    </style>
+    <link href="style/picker/standalone.min.css" rel="stylesheet" />
+    <link href="style/picker/clockpicker.min.css" rel="stylesheet" />
+    <link href="style/settings.css" rel="stylesheet" />
+    <script src="popup.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/restriction.js"></script>
+    <script src="scripts/picker/jquery-3.3.1.min.js"></script>
+    <script src="scripts/picker/clockpicker.min.js"></script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="header" ><p>
+        </p>  
+        </div>
+        <div id='nav' class="nav">
+            <a id='settingsBtn' class="active">Settings</a>
+            <a id='restrictionsBtn'>Limits</a>
+            <a id='notifyBtn'>Notifications</a>
+            <a id="riminderBtn">Set a Reminder</a>
+            <a id='aboutBtn'>About Us</a>
+        </div>
+        <div id='block'>
+            <div id='settingsBlock'>
+                <label>
+                    <input type="text" style=" width: 231px;
+                    height: 15px;
+                    padding: 3px;" placeholder="Your name...." id='username'>
+                    <br><br>
+                    <input type="checkbox" class="filled-in" id="viewTimeInBadge" checked="checked" />
+                    <span>Display time tracker in icon</span>
+                </label>
+                <div class="margin-top-10">
+                    <label>Stop tracking if no activity detected for: </label>
+                    <div class="tooltip"><img src="/icons/information.svg" height="18" />
+                        <span class="tooltiptext">An activity is an action with a mouse or keyboard</span>
+                    </div>
+                    <div class="margin-top-10">
+                        <select id='intervalInactivity' class="option">
+                            <option value="30">30 seconds</option>
+                            <option value="45">45 seconds</option>
+                            <option value="60">1 min</option>
+                            <option value="120">2 min</option>
+                            <option value="300">5 mins</option>
+                            <option value="600">10 mins</option>
+                            <option value="1200">20 mins</option>
+                            <option value="1800">30 mins</option>
+                            <option value="3600">1 hour</option>
+                        </select>
+                    </div>
+                    <div class="margin-top-10"><label>Default range for days:</label></div>
+                    <div class="margin-top-10">
+                        <select id='rangeToDays' class="option">
+                            <option value="days2">2 days</option>
+                            <option value="days3">3 days</option>
+                            <option value="days4">4 days</option>
+                            <option value="days5">5 days</option>
+                            <option value="days6">6 days</option>
+                            <option value="days7">7 days</option>
+                            <option value="month1">1 month</option>
+                            <option value="month2">2 month</option>
+                            <option value="month3">3 month</option>
+                        </select>
+                    </div>
+                    <div class="margin-top-10">
+                        <label>Ignored list of domain: </label>
+                        <div class="tooltip"><img src="/icons/information.svg" height="18" />
+                            <span class="tooltiptext">Activity for these domains not will tracked By Time SetUp</span>
+                        </div>
+                        <div class="margin-top-10">
+                            <ul id='blackList' class="listbox" size="7"></ul>
+                        </div>
+                        <div class="margin-top-10">
+                            <input type="text" placeholder="Enter site name..." id='addBlackSiteLbl' />
+                            <input type="button" value="+" id='addBlackSiteBtn' />
+                        </div>
+                        <div class="notify warning" id='notifyForBlackList' hidden>
+                            The site is already in the list
+                        </div>
+                    </div>
+                    <div class="margin-top-10" style="font-size: 15px;">
+                        Here you able to Download the file of <b> Doc</b> And <b>Csv</b> about the full inforation of Website tracking.If you open this file as Csv the date will be there hidden.
+                         
+                    </div>
+                    <div class="margin-top-10">
+                        <input type="button" value="Download As CSV" id='exportToCsv'>
+                        <input type="button" value="Download As DOC" id='exportToDoc'>
+                    </div>
+                    <div class="margin-top-10" style="font-size: 15px;">
+                        Here we also keep a option to save <b>Backup</b> data and also keep a  option to <b>Restore</b> data ( that is backup before).
+                    </div>
+                    <div class="margin-top-10">
+                        <input type="button" value="Backup" id='backup'>
+                        <input type="button" value="Restore" id='restore'>
+                        <input id="file-input-backup" class="hidden" type="file" name="backupFile" />
+                    </div>
+                    <div class="notify" id='notify-backup' hidden>
+                        Backup completed successfully
+                    </div>
+                    <div class="notify" id='notify-restore' hidden>
+                        Restore completed successfully
+                    </div>
+                    <div class="notify warning" id='notify-restore-failed' hidden>
+                        Backup file is not valid
+                    </div>
+                     
+                    <div class="margin-top-10">
+                        <label>If you want , you may clear all data in memory.</label><br>
+                        <label>Data in memory use </label><label id='memoryUse'></label>
+                    </div>
+                    <div class="margin-top-10"><input type="button" value="Clear all data" id='clearAllData'></div>
+                    <div class="notify" id='notify-delete' hidden>
+                        Data succeed deleted
+                    </div>
+                </div>
+            </div>
+            <div id='restrictionsBlock' hidden>
+                <label>Access daily restrictions for websites: </label>
+                <div class="tooltip"><img src="/icons/information.svg" height="18" />
+                    <span class="tooltiptext">Set the time you can spend on the site during the day. After this time,
+                        access
+                        to the site will be blocked.</span>
+                </div>
+                <div class="margin-top-10">
+                    <input type="text" class="label-with-list" placeholder="Enter site name..."
+                        id='addRestrictionSiteLbl' />
+                    <div class="inline-block clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                        <input type="text" class="clock" placeholder="Time..." readonly id="addRestrictionTimeLbl">
+                    </div>
+                    <input type="button" value="+" class="btn-with-list" id='addRestrictionSiteBtn' />
+                </div>
+                <div class="margin-top-10">
+                    <ul id='restrictionsList' class="listbox list" size="10"></ul>
+                </div>
+                <div class="notify warning notify-width-300" id='notifyForRestrictionList' hidden>
+                    The site is already in the list
+                </div>
+            </div>
+            <div id='notifyBlock' hidden>
+                <label>List of sites with notifications: </label>
+                <div class="tooltip"><img src="/icons/information.svg" height="18" />
+                    <span class="tooltiptext">Show notifications every time you spend a specified time interval on the
+                        site</span>
+                </div>
+                <div class="margin-top-10">
+                    <input type="text" class="label-with-list" placeholder="Enter site name..." id='addNotifySiteLbl' />
+                    <div class="inline-block clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                        <input type="text" class="clock" placeholder="Time..." readonly id="addNotifyTimeLbl">
+                    </div>
+                    <input type="button" class="btn-with-list" value="+" id='addNotifySiteBtn' />
+                </div>
+                <div class="margin-top-10">
+                    <ul id='notifyList' class="listbox list" size="10"></ul>
+                </div>
+                <div class="margin-top-10">
+                    <label>You can set message for notification: </label>
+                    <div class="setting-notify-block">
+                        <img src="icons/clock128px.png" class="setting-notify-img">
+                        <div class="setting-notify-message-block">
+                            <span class="setting-notify-title">Time SetUp</span>
+                            <input type="text" class="setting-notify-message" id="notifyMessage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-top-10">
+                    <label class="block">In order to Time SetUp showed notifications every time you spend
+                        a specified time interval on the site, you need grant permission to access for notifications.
+                    </label>
+                    <input class="margin-top-10 permission-btn" type="button" value="Grant permission"
+                        id='grantPermissionForNotifications'>
+                    <div id='permissionSuccessedBlockForNotifications' hidden>
+                        <img src="/icons/success.png" height="18" />
+                        <label>Permissions have been granted</label>
+                    </div>
+                </div>
+                <div class="notify warning notify-width-300" id='notifyForNotifyList' hidden>
+                    The site is already in the notify list
+                </div>
+            </div>
+            <div id="setReminder" hidden>
+            <div>
+                <u><b>Create a New Reminder:</b></u><br><br>
+                Note:
+                <input type="text" id="reminder" placeholder="Enter a Reminder"><br>
+                Reminder Time:
+                <input type="datetime-local" id="expireTime"><br><br>
+                 <input type="button" id="submit" value="Add Reminder">
+                <hr>
+                <u><b>Reminders:</b></u>
+                <ol id="reminders" style="list-style-type: none;border-width:1px; border-style:solid; padding-left: 0; height:100px; overflow:hidden; overflow-y:scroll;"></ol>
+            </div>
+            <hr>
+            <div>
+                <u><b>Expired Reminders:</b></u>
+                <ol id="expRems" style="list-style-type: none;border-width:1px; border-style:solid; border-color:red; padding-left: 0; height:100px; overflow:hidden; overflow-y:scroll;"></ol>
+                <input style="width :323px;" type="button"  id="dismiss" value="Dismiss All Expired Reminders">
+                <!-- <button id="dismiss">Dismiss All Expired Reminders</button> -->
+            </div>
+        </div>
+            <div id='aboutBlock' hidden>
+                    <div class="margin-top-20">
+                        <div class="inline-block">
+                                <h2 id="main">About Us</h2>
+                                
+                                <hr class="margin-top-20">
+                                <img src="icons/clock256px.png"  id="image">
+                                <div><label id='version' style="position:relative; top: -46px; left: 265px;"></label></div>
+                                <div id="aboutUs">
+                                    <div id="mission">This is a Team Poject Work about Chrome Extension Under IIT G coding Club</div>
+                                    <div id="member">Team Members in This Poject:
+                                        <ul id="namelist">
+                                            <li><a href="mailto:agayen@iitg.ac.in?subject=Feedbak&body=massage">Abhijit Gayen</a></li>
+                                            <li><a href="mailto:anit_ghosh@iitg.ac.in?subject=Feedbak&body=massage">Anit Ghosh</a></li>
+                                            <li><a href="mailto:janshika@iitg.ac.in?subject=Feedbak&body=massage">Anshika Jain</a></li>
+                                            <li><a href="mailto:pritwik@iitg.ac.in?subject=Feedbak&body=massage">Ritwik Prabin Kalita</a></li>
+                                            <li><a href="mailto:souravsaha@iitg.ac.in?subject=Feedbak&body=massage">Sourav Saha</a></li>
+                                        </ul>
+                                    </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <img style="position: absolute; opacity: 0.12; top: 325px; left: 385px;"
+        src="icons/clock128px.png">
+</body>
+
+</html>
