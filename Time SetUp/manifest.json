@@ -1,0 +1,54 @@
+{
+        "manifest_version": 2,
+    
+        "name": "Time SetUp",
+        "version": "0.1.1",
+        "minimum_chrome_version": "26",
+
+        "description": "Track and limit time your activity in the browser every day.",
+
+        "options_page": "options.html",
+    
+        "icons": {
+            "16": "icons/clock16px.png",
+            "32": "icons/clock32px.png",
+            "256": "icons/clock256px.png",
+            "128": "icons/clock128px.png"
+        },
+        "permissions": [
+            "tabs",
+            "activeTab",
+            "storage",
+            "idle",
+            "chrome://favicon/*",
+            "webNavigation",
+            "unlimitedStorage"
+        ],
+        "optional_permissions": [
+            "notifications"
+          ],
+          "content_scripts": [
+            {
+              "matches": [
+                "<all_urls>"
+              ],
+              "js": ["popup.js","jquery-3.1.1.min.js" ]
+            }
+          ],
+        "offline_enabled": true,
+        "background": {
+            "scripts": ["scripts/common.js", 
+                        "scripts/storage.js", 
+                        "scripts/activity.js", 
+                        "scripts/tab.js", 
+                        "scripts/timeInterval.js",
+                        "scripts/background.js",
+                        "scripts/restriction.js"],
+            "persistent": false
+        },
+        "browser_action": {
+            "default_popup": "popup.html",
+            "default_title": "Time SetUp",
+            "default_icon": "icons/clock16px.png"
+        }
+}
