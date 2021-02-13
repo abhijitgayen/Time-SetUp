@@ -1,0 +1,60 @@
+html{
+    padding:0px;
+    background-image: linear-gradient(white,rgb(111, 215, 233));
+}
+body{
+    padding-top:120px;
+    text-align: center;
+    padding-bottom: 245px;
+    
+}
+.tit{
+    font-size: 33px;
+    font-weight: 600;
+    font-family:cursive;
+    color: red;
+}
+#alert-img{
+    padding: 0%;
+}
+.description{
+    font-size: 15px;
+    font-weight: 700;
+}
+#help{
+    font-size: 11px;
+    font-weight: 100;
+    font-family: cursive;
+}
+.current-site{
+    font-size: 18px;
+    font-weight: 500;
+    color: red;
+}
+
+.current-limit{
+    font-weight: 500;
+    color: red;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.product-title{
+    font-size: 16px;
+    color: rgb(30, 155, 238);
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-family: cursive;
+    padding: 15px;
+    border-radius: 82px;
+    background-color: rgb(253, 253, 252);
+}
+#image{
+    position: absolute;
+    opacity: 0.19;
+    top: 30%;
+    left: 60%;
+}
