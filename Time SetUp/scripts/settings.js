@@ -204,7 +204,7 @@ function exportToCSV() {
 function backup() {
     storage.getValue(STORAGE_TABS, function (item) {
         let tabs = JSON.stringify(item);
-        createFile(tabs, "application/json", 'backup.json');
+        createFile(tabs, "application/json", 'Time_SetUp.json');
         viewNotify('notify-backup');
     });
 }
