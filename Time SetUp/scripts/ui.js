@@ -176,7 +176,7 @@ class UI {
         img.setAttribute('height', 17);
         if (tab.favicon !== undefined || tab.favicon == null)
             img.setAttribute('src', tab.favicon);
-        else img.setAttribute('src', '/icons/empty.png');
+        else img.setAttribute('src', '/icons/clock32px.png');
         divForImg.classList.add('block-img');
         divForImg.appendChild(img);
 
@@ -202,7 +202,7 @@ class UI {
                 if (item !== undefined) {
                     var divLimit = this.createElement('div', ['tooltip', 'inline-block']);
                     var limitIcon = this.createElement('img', ['margin-left-5', 'tooltip']);
-                    limitIcon.height = 15;
+                    limitIcon.height = 18;
                     limitIcon.src = '/icons/limit.png';
                     var tooltip = this.createElement('span', ['noteforuser'], "Daily limit is " + convertShortSummaryTimeToLongString(item.time));
                     divLimit = this.appendChild(divLimit, [limitIcon, tooltip]);
