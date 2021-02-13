@@ -301,7 +301,7 @@ input[type='checkbox'] {
 
 /* Tooltip text */
 
-.tooltip .tooltiptext {
+.tooltip .noteforuser {
     font-size: 11px;
     font-weight: 500;
     visibility: hidden;
@@ -320,12 +320,12 @@ input[type='checkbox'] {
     transition: opacity 0.3s;
 }
 
-.visits.tooltip .tooltiptext {
+.visits.tooltip .noteforuser {
     width: 120px;
     transform: translateX(-50%) translateY(-120%);
 }
 
-.current-url.tooltip .tooltiptext {
+.current-url.tooltip .noteforuser {
     width: 120px;
     transform: translateX(-50%) translateY(-120%);
 }
@@ -333,7 +333,7 @@ input[type='checkbox'] {
 
 /* Show the tooltip text when you mouse over the tooltip container */
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .noteforuser {
     visibility: visible;
     opacity: 1;
 }
