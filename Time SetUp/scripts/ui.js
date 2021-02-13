@@ -66,7 +66,7 @@ class UI {
         var totalElement = document.getElementById('total');
 
         var spanVisits = this.createElement('span', ['span-visits', 'tooltip', 'visits'], counter !== undefined ? counter : 0);
-        var visitsTooltip = this.createElement('span', ['tooltiptext'], 'Count of visits');
+        var visitsTooltip = this.createElement('span', ['noteforuser'], 'Count of visits');
         spanVisits.appendChild(visitsTooltip);
 
         var spanPercentage = this.createElement('span', ['span-percentage'], '100 %');
@@ -190,7 +190,7 @@ class UI {
             imgCurrentDomain.setAttribute('height', 17);
             imgCurrentDomain.classList.add('margin-left-5');
             divForImage.appendChild(imgCurrentDomain);
-            var currentDomainTooltip = this.createElement('span', ['tooltiptext'], 'Current domain');
+            var currentDomainTooltip = this.createElement('span', ['noteforuser'], 'Current domain');
             divForImage.classList.add('tooltip', 'current-url');
             divForImage.appendChild(currentDomainTooltip);
             spanUrl.appendChild(divForImage);
@@ -204,7 +204,7 @@ class UI {
                     var limitIcon = this.createElement('img', ['margin-left-5', 'tooltip']);
                     limitIcon.height = 15;
                     limitIcon.src = '/icons/limit.png';
-                    var tooltip = this.createElement('span', ['tooltiptext'], "Daily limit is " + convertShortSummaryTimeToLongString(item.time));
+                    var tooltip = this.createElement('span', ['noteforuser'], "Daily limit is " + convertShortSummaryTimeToLongString(item.time));
                     divLimit = this.appendChild(divLimit, [limitIcon, tooltip]);
                     spanUrl.appendChild(divLimit);
                 }
@@ -212,7 +212,7 @@ class UI {
         }
 
         var spanVisits = this.createElement('span', ['span-visits', 'tooltip', 'visits'], counter !== undefined ? counter : 0);
-        var visitsTooltip = this.createElement('span', ['tooltiptext'], 'Count of visits');
+        var visitsTooltip = this.createElement('span', ['noteforuser'], 'Count of visits');
 
         spanVisits.appendChild(visitsTooltip);
 
