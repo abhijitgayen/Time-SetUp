@@ -24,7 +24,7 @@ class Activity {
                     this.setCurrentActiveTab(domain);
                     var tabUrl = this.getTab(domain);
                     if (tabUrl !== undefined)
-                        tabUrl.incCounter();
+                        tabUrl.incCounter();                
                     this.addTimeInterval(domain);
                 }
             }
