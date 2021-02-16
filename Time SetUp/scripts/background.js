@@ -136,54 +136,6 @@ function setBlockPageToCurrent(activeUrl) {
     });
 }
 
-function isVideoPlayedOnPage() {
-    var videoElement = document.getElementsByTagName('video')[0];
-    if (videoElement !== undefined && videoElement.currentTime > 0 && !videoElement.paused && !videoElement.ended && videoElement.readyState > 2) {
-        return true;
-    } else return false;
-}
-
-function checkDOM(state, activeUrl, tab, activeTab) {
-    if (state === 'idle' && isDomainEquals(activeUrl, "youtube.com")) {
-        trackForYT(mainTRacker, activeUrl, tab, activeTab);
-    } else if (state === 'idle' && isDomainEquals(activeUrl, "netflix.com")) {
-        trackForNetflix(mainTRacker, activeUrl, tab, activeTab);
-    } else activity.closeIntervalForCurrentTab();
-}
-
-function trackForYT(callback, activeUrl, tab, activeTab) {
-    if (isHasPermissioForYouTube) {
-        executeScriptYoutube(callback, activeUrl, tab, activeTab);
-    } else {
-        checkPermissionsForYT(executeScriptYoutube, activity.closeIntervalForCurrentTab, callback, activeUrl, tab, activeTab);
-    }
-}
-
-function trackForNetflix(callback, activeUrl, tab, activeTab) {
-    if (isHasPermissioForNetflix) {
-        executeScriptNetflix(callback, activeUrl, tab, activeTab);
-    } else {
-        checkPermissionsForNetflix(executeScriptNetflix, activity.closeIntervalForCurrentTab, callback, activeUrl, tab, activeTab);
-    }
-}
-
-function executeScriptYoutube(callback, activeUrl, tab, activeTab) {
-    chrome.tabs.executeScript({ code: "var videoElement = document.getElementsByTagName('video')[0]; (videoElement !== undefined && videoElement.currentTime > 0 && !videoElement.paused && !videoElement.ended && videoElement.readyState > 2);" }, (results) => {
-        if (results !== undefined && results[0] !== undefined && results[0] === true)
-            callback(activeUrl, tab, activeTab);
-        else activity.closeIntervalForCurrentTab();
-    });
-}
-
-function executeScriptNetflix(callback, activeUrl, tab, activeTab) {
-    chrome.tabs.executeScript({ code: "var videoElement = document.getElementsByTagName('video')[0]; (videoElement !== undefined && videoElement.currentTime > 0 && !videoElement.paused && !videoElement.ended && videoElement.readyState > 2);" }, (results) => {
-        if (results !== undefined && results[0] !== undefined && results[0] === true) {
-            callback(activeUrl, tab, activeTab);
-        } else {
-            activity.closeIntervalForCurrentTab();
-        }
-    });
-}
 
 function backgroundUpdateStorage() {
     if (tabs != undefined && tabs.length > 0)
