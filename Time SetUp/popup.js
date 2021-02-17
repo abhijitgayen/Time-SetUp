@@ -1,30 +1,4 @@
-console.log("popup.js");
-/*this is countdoun timer*/
-// chrome.storage.local.get(['timesec'],function(timer){
-// count=0;
-// var time=parseInt(timer.timesec);
-// function convertSec(s){
-//     var min=set(parseInt(s/60));
-//     var hour=set(parseInt(s/3600));
-//     var sec=set(s%60);
-//     return hour+":"+min+':'+sec ;
-// }
-// function set(n){
-//     if(n<10)
-//     return '0'+ n;
-//     if( (n>=60) && (n%60 <10)){
-//       return '0'+ n%60 ;
-//     }
-//     else return n%60;
-// }
-// function setUp(){
-//     count++;
-//     if((time-count)>=0){
-//       chrome.storage.local.set({'timesec':(time-count)});
-//     $("#timer").html(convertSec(time-count));      
-// }
-// }
-// setInterval(setUp,1000-17);});
+ 
 /* hello world print out */
 chrome.storage.local.get(['username'],function(timer){
   if(timer.username !=null){
