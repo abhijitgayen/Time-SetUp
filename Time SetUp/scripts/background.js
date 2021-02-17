@@ -303,11 +303,9 @@ function checkPermissionsForNotifications(callback, ...props) {
     });
 }
 // rest notification
-var alarm = chrome.alarms.create("myAlarm", { delayInMinutes: 10, periodInMinutes:10 });
-
+var alarm = chrome.alarms.create("myAlarm", { delayInMinutes: 1.0, periodInMinutes:1.1 });
 chrome.alarms.onAlarm.addListener( function (alarm) {
   chrome.notifications.clear('take-a-break-notification');
-  
   var notification = chrome.notifications.create(
     'take-a-break-notification', {
       type: 'basic',
@@ -315,24 +313,22 @@ chrome.alarms.onAlarm.addListener( function (alarm) {
       title: 'Time SetUP Says',
       message: 'Take a break! Look away from your computer screen and focus on a spot 20 feet away for 50 seconds.'
     },
-    function () {}
   );
-});
-var alarm = chrome.alarms.create("myAlarm2", { delayInMinutes: 60, periodInMinutes:60 });
+// });
+// var alarm2= chrome.alarms.create("myAlarm2", { delayInMinutes: 200.0, periodInMinutes:10000.0 });
 
-chrome.alarms.onAlarm.addListener( function (alarm) {
-  chrome.notifications.clear('take-a-break-notification2');
+// chrome.alarms.onAlarm.addListener( function(alarm2) {
+//   chrome.notifications.clear('take-a-break-notification2');
   
-  var notification = chrome.notifications.create(
-    'take-a-break-notification2', {
-      type: 'basic',
-      iconUrl: "icons/clock32px.png", 
-      title: 'Time SetUP Says',
-      message: 'You need to take a long break.It is bad for your health.'
-    },
-    function () {}
-  );
-});
+//   var notification2 = chrome.notifications.create(
+//     'take-a-break-notification2', {
+//       type: 'basic',
+//       iconUrl: "icons/clock32px.png", 
+//       title: 'Time SetUP Says',
+//       message: 'You need to take a long break.It is bad for your health.'
+//     },
+//   );
+// });
 //end of the rest notification
 addListener();
 loadAddDataFromStorage();
