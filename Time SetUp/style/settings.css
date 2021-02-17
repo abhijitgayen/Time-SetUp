@@ -32,28 +32,34 @@ a {
 
 .nav{
     grid-area: n;
-    border-right: 1px solid #ddd;
-    padding-right:15px;
+    border-right: 2px solid rgb(164, 227, 247);
+    padding-right:25px;
+    padding-left: 25px;
     align-self: start;
 }
 
 .nav a {
     font-size: 16px;
-    margin-bottom: 20px;
-    color: #888;
+    margin-bottom: 2px;
+    color: rgb(89, 38, 231);
+    background-image:linear-gradient(rgb(39, 252, 252),white ,rgb(166, 248, 248));
+    border-radius: 19px;
     display: block;
+    text-align: center;
+    padding: 6px;
 }
 
 .nav a:hover {
     font-size: 16px;
-    margin-bottom: 20px;
-    color: #3477db;
+    margin-bottom: 9px;
+    color: #55bcec;
     display: block;
     font-weight: 650;
+    border-radius: 0px;
 }
 
 .nav .active {
-    color: #3477db;
+    color: #065b61;
     font-weight: bold;
 }
 
