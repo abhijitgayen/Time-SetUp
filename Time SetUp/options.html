@@ -41,6 +41,7 @@
         <div id='block'>
             <div id='settingsBlock'>
                 <label>
+                    <label>Set Your Name</label>
                     <input type="text" style=" width: 231px;
                     height: 15px;
                     padding: 3px;" placeholder="Your name...." id='username'>
@@ -48,6 +49,23 @@
                     <input type="checkbox" class="filled-in" id="viewTimeInBadge" checked="checked" />
                     <span>Display time tracker in icon</span>
                 </label>
+                <div class="margin-top-10"><label>Analysis for days:</label>
+                    <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                        <span class="noteforuser">For how many Days you want to track your activity on chrome</span>
+                    </div></div>
+                <div class="margin-top-10">
+                    <select id='rangeToDays' class="option">
+                        <option value="days2">2 days</option>
+                        <option value="days3">3 days</option>
+                        <option value="days4">4 days</option>
+                        <option value="days5">5 days</option>
+                        <option value="days6">6 days</option>
+                        <option value="days7">7 days</option>
+                        <option value="month1">1 month</option>
+                        <option value="month2">2 month</option>
+                        <option value="month3">3 month</option>
+                    </select>
+                </div>
                 <div class="margin-top-10">
                     <label>Stop tracking if no activity detected for: </label>
                     <div class="tooltip"><img src="/icons/limit.png" height="18" />
@@ -66,34 +84,22 @@
                             <option value="3600">1 hour</option>
                         </select>
                     </div>
-                    <div class="margin-top-10"><label>Default range for days:</label></div>
-                    <div class="margin-top-10">
-                        <select id='rangeToDays' class="option">
-                            <option value="days2">2 days</option>
-                            <option value="days3">3 days</option>
-                            <option value="days4">4 days</option>
-                            <option value="days5">5 days</option>
-                            <option value="days6">6 days</option>
-                            <option value="days7">7 days</option>
-                            <option value="month1">1 month</option>
-                            <option value="month2">2 month</option>
-                            <option value="month3">3 month</option>
-                        </select>
-                    </div>
+                    
                     <div class="margin-top-10">
                         <label>Ignored list of domain: </label>
                         <div class="tooltip"><img src="/icons/limit.png" height="18" />
                             <span class="noteforuser">Activity for these domains not will tracked By Time SetUp</span>
                         </div>
                         <div class="margin-top-10">
-                            <ul id='blackList' class="listbox" size="7"></ul>
-                        </div>
-                        <div class="margin-top-10">
                             <input type="text" placeholder="Enter site name..." id='addBlackSiteLbl' />
                             <input type="button" value="+" id='addBlackSiteBtn' />
                         </div>
+                        <div class="margin-top-10">
+                            <ul id='blackList' class="listbox" size="7"></ul>
+                        </div>
+                        
                         <div class="notify warning" id='notifyForBlackList' hidden>
-                            The site is already in the list
+                          Cheak again !..The site is already in the list.
                         </div>
                     </div>
                     <div class="margin-top-10" style="font-size: 15px;">
@@ -139,9 +145,7 @@
                 <br>
                 <label>Access daily restrictions for websites: </label>
                 <div class="tooltip"><img src="/icons/limit.png" height="18" />
-                    <span class="noteforuser">Set the time you can spend on the site during the day. After this time,
-                        access
-                        to the site will be blocked.</span>
+                    <span class="noteforuser">Set the time you can spend on the site during the day. After this time, access to the site will be blocked.it is work for every day</span>
                 </div>
                 <div class="margin-top-10">
                     <input type="text" class="label-with-list" placeholder="Enter site name..."
@@ -159,10 +163,12 @@
                 </div>
             </div>
             <div id='notifyBlock' hidden>
+                <br>
+                <br>
+                <br>
                 <label>List of sites with notifications: </label>
                 <div class="tooltip"><img src="/icons/limit.png" height="18" />
-                    <span class="noteforuser">Show notifications every time you spend a specified time interval on the
-                        site</span>
+                    <span class="noteforuser">Time SetUp send you notifications with particular massege every time you spend a specified time interval on the site</span>
                 </div>
                 <div class="margin-top-10">
                     <input type="text" class="label-with-list" placeholder="Enter site name..." id='addNotifySiteLbl' />
