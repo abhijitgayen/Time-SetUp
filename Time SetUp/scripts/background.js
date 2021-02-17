@@ -303,7 +303,7 @@ function checkPermissionsForNotifications(callback, ...props) {
     });
 }
 // rest notification
-var alarm = chrome.alarms.create("myAlarm", { delayInMinutes: 1.0, periodInMinutes:1.1 });
+var alarm = chrome.alarms.create("myAlarm", { delayInMinutes: 10.0, periodInMinutes:10.0});
 chrome.alarms.onAlarm.addListener( function (alarm) {
   chrome.notifications.clear('take-a-break-notification');
   var notification = chrome.notifications.create(
@@ -314,7 +314,7 @@ chrome.alarms.onAlarm.addListener( function (alarm) {
       message: 'Take a break! Look away from your computer screen and focus on a spot 20 feet away for 50 seconds.'
     },
   );
-// });
+ });
 // var alarm2= chrome.alarms.create("myAlarm2", { delayInMinutes: 200.0, periodInMinutes:10000.0 });
 
 // chrome.alarms.onAlarm.addListener( function(alarm2) {
