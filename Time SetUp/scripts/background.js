@@ -15,8 +15,6 @@ var setting_view_in_badge;
 var setting_notification_list;
 var setting_notification_message;
 
-var isHasPermissioForYouTube;
-var isHasPermissioForNetflix;
 var isHasPermissioForNotification;
 
 function updateSummaryTime() {
@@ -52,7 +50,7 @@ function backgroundCheck() {
                         chrome.idle.queryState(parseInt(setting_interval_inactivity), function(state) {
                             if (state === 'active') {
                                 mainTRacker(activeUrl, tab, activeTab);
-                            } else checkDOM(state, activeUrl, tab, activeTab);
+                            }/* else checkDOM(state, activeUrl, tab, activeTab);*/
                         });
                     }
                 }
@@ -294,39 +292,7 @@ function loadAddDataFromStorage() {
     loadNotificationMessage();
     loadSettings();
 }
-
-function loadPermissions() {
-    checkPermissionsForYT();
-    checkPermissionsForNetflix();
-    checkPermissionsForNotifications();
-}
-
-function checkPermissionsForYT(callbackIfTrue, callbackIfFalse, ...props) {
-    chrome.permissions.contains({
-        permissions: ['tabs'],
-        origins: ["https://www.youtube.com/*"]
-    }, function(result) {
-        if (callbackIfTrue != undefined && result)
-            callbackIfTrue(...props);
-        if (callbackIfFalse != undefined && !result)
-            callbackIfFalse();
-        isHasPermissioForYouTube = result;
-    });
-}
-
-function checkPermissionsForNetflix(callbackIfTrue, callbackIfFalse, ...props) {
-    chrome.permissions.contains({
-        permissions: ['tabs'],
-        origins: ["https://www.netflix.com/*"]
-    }, function(result) {
-        if (callbackIfTrue != undefined && result)
-            callbackIfTrue(...props);
-        if (callbackIfFalse != undefined && !result)
-            callbackIfFalse();
-        isHasPermissioForNetflix = result;
-    });
-}
-
+ 
 function checkPermissionsForNotifications(callback, ...props) {
     chrome.permissions.contains({
         permissions: ["notifications"]
@@ -336,8 +302,38 @@ function checkPermissionsForNotifications(callback, ...props) {
         isHasPermissioForNotification = result;
     });
 }
+// rest notification
+var alarm = chrome.alarms.create("myAlarm", { delayInMinutes: 10, periodInMinutes:10 });
 
-loadPermissions();
+chrome.alarms.onAlarm.addListener( function (alarm) {
+  chrome.notifications.clear('take-a-break-notification');
+  
+  var notification = chrome.notifications.create(
+    'take-a-break-notification', {
+      type: 'basic',
+      iconUrl: "icons/clock32px.png", 
+      title: 'Time SetUP Says',
+      message: 'Take a break! Look away from your computer screen and focus on a spot 20 feet away for 50 seconds.'
+    },
+    function () {}
+  );
+});
+var alarm = chrome.alarms.create("myAlarm2", { delayInMinutes: 60, periodInMinutes:60 });
+
+chrome.alarms.onAlarm.addListener( function (alarm) {
+  chrome.notifications.clear('take-a-break-notification2');
+  
+  var notification = chrome.notifications.create(
+    'take-a-break-notification2', {
+      type: 'basic',
+      iconUrl: "icons/clock32px.png", 
+      title: 'Time SetUP Says',
+      message: 'You need to take a long break.It is bad for your health.'
+    },
+    function () {}
+  );
+});
+//end of the rest notification
 addListener();
 loadAddDataFromStorage();
 updateSummaryTime();
