@@ -15,21 +15,24 @@
             "256": "icons/clock256px.png",
             "128": "icons/clock128px.png"
         },
+        "browser_action": {
+            "default_popup": "popup.html",
+            "default_title": "Time SetUp",
+            "default_icon": "icons/clock16px.png"
+        },
+        "offline_enabled": true,
         "permissions": [
             "tabs",
+            "alarms",
             "activeTab",
             "storage",
             "idle",
-            "chrome://favicon/*",
             "webNavigation",
-            "unlimitedStorage"
-        ],
-        "optional_permissions": [
-            "https://www.youtube.com/*",
-            "https://www.netflix.com/*",
+            "unlimitedStorage",
+            "chrome://favicon/*",
             "notifications"
-          ],
-        "offline_enabled": true,
+
+        ],
         "background": {
             "scripts": ["scripts/common.js", 
                         "scripts/storage.js", 
@@ -39,10 +42,5 @@
                         "scripts/background.js",
                         "scripts/restriction.js"],
             "persistent": false
-        },
-        "browser_action": {
-            "default_popup": "popup.html",
-            "default_title": "Time SetUp",
-            "default_icon": "icons/clock16px.png"
         }
 }
