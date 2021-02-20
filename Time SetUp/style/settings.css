@@ -287,18 +287,18 @@ input[type="button"]:hover {
       cursor: pointer;
   }
 
-  #addBlackSiteLbl{
-      width: 321px;
-      height: 15px;
-      padding: 3px;
+  #addignorList{
+        padding: 4px;
+        width: 321px;
+         height: 13px; 
   }
 
-  #addBlackSiteBtn{
-    height: 24px !important;
-    line-height: 20px !important;
+  #addignorDomainBtn{
+    height: 23px !important;
     padding: 0 5px !important;
-    min-width: 20px !important;
+    line-height: 21px !important;
     width: 28px !important;
+    min-width: 20px !important;  
   }
 
   .label-with-list{
@@ -351,11 +351,13 @@ input[type="button"]:hover {
 }
 
 .notify.warning{
-    background-color: rgb(219, 93, 104);
+    background-color: rgb(139, 8, 17);
+    height: 50px !important;
 }
 
 .notify-width-300{
     width: 300px !important;
+  
 }
 
 .button{
