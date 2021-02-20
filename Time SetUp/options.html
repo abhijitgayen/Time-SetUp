@@ -36,7 +36,7 @@
         <div id='navbar' class="navbar">
             <a id='btnSettings' class="active">Settings</a>
             <a id='btnNtificationSet'>Notifications</a>
-            <a id='btnLimits'>Limits</a>
+            <a id='btnLimits'>Daily Limits</a>
             <!-- <a id="riminderBtn">Set a Rimider</a> -->
             <a id='btnAboutUs'>About Us</a>
         </div>
@@ -50,7 +50,7 @@
                     <br>
                 </label>
                 <div class="margin-top-10"><label>Analysis for days:</label>
-                    <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                    <div class="tipsToUse"><img src="/icons/limit.png" height="18" />
                         <span class="noteforuser">For how many Days you want to track your activity on chrome</span>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="margin-top-10">
                     <label>Stop tracking if no activity detected for: </label>
-                    <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                    <div class="tipsToUse"><img src="/icons/limit.png" height="18" />
                         <span class="noteforuser">We able to access activity when mouse or keyboard is work on this
                             page. after this perticuler time ,Time SetUp stop their activity </span>
                     </div>
@@ -89,11 +89,12 @@
 
                     <div class="margin-top-10">
                         <label>Ignored list of domain: </label>
-                        <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                        <div class="tipsToUse"><img src="/icons/limit.png" height="18" />
                             <span class="noteforuser">Activity for these domains not will tracked By Time SetUp</span>
                         </div>
                         <div class="margin-top-10">
-                            <input type="text" style=" border-color: aquamarine;"placeholder="Enter site name..." id='addignorList' />
+                            <input type="text" style=" border-color: aquamarine;" placeholder="Enter site name..."
+                                id='addignorList' />
                             <input type="button" value="+" id='addignorDomainBtn' />
                         </div>
                         <div class="margin-top-10">
@@ -149,20 +150,20 @@
                 <br>
                 <br>
                 <label>Access daily restrictions for websites: </label>
-                <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                <div class="tipsToUse"><img src="/icons/limit.png" height="18" />
                     <span class="noteforuser">Set the time you can spend on the site during the day. After this time,
                         access to the site will be blocked.it is work for every day</span>
                 </div>
                 <div class="margin-top-10">
-                    <input type="text" class="label-with-list" style="border-color: aquamarine;" placeholder="Enter site name..."
-                        id='addRestrictionSiteLbl' />
+                    <input type="text" class="label-with-list" style="border-color: aquamarine;"
+                        placeholder="Enter site name..." id='addRestrictionSiteLbl' />
                     <div class="inline-block clockpicker" data-placement="left" data-align="top" data-autoclose="true">
                         <input type="text" class="clock" placeholder="Time..." readonly id="addRestrictionTimeLbl">
                     </div>
                     <input type="button" value="+" class="btn-with-list" id='addRestrictionSiteBtn' />
                 </div>
                 <div class="margin-top-10">
-                    <ul id='restrictionsList' class="listbox list" size="10" style="border-color: aquamarine;" ></ul>
+                    <ul id='restrictionsList' class="listbox list" size="10" style="border-color: aquamarine;"></ul>
                 </div>
                 <div class="notify warning notify-width-300" id='notifyForRestrictionList' hidden>
                     The site is already in the list
@@ -182,14 +183,16 @@
                 </div>
                 <br>
                 <label>List of sites with notifications: </label>
-                <div class="tooltip"><img src="/icons/limit.png" height="18" />
+                <div class="tipsToUse"><img src="/icons/limit.png" height="18" />
                     <span class="noteforuser">Time SetUp send you notifications with particular massege every time you
                         spend a specified time interval on the site</span>
                 </div>
                 <div class="margin-top-10">
-                    <input type="text" class="label-with-list" style="border-color: aquamarine;" placeholder="Enter site name..." id='addNotifySiteLbl' />
+                    <input type="text" class="label-with-list" style="border-color: aquamarine;"
+                        placeholder="Enter site name..." id='addNotifySiteLbl' />
                     <div class="inline-block clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-                        <input type="text" class="clock" style="border-color: aquamarine;" placeholder="Time..." readonly id="addNotifyTimeLbl">
+                        <input type="text" class="clock" style="border-color: aquamarine;" placeholder="Time..."
+                            readonly id="addNotifyTimeLbl">
                     </div>
                     <input type="button" class="btn-with-list" value="+" id='addNotifySiteBtn' />
                 </div>
@@ -202,7 +205,8 @@
                         <img src="icons/clock128px.png" class="setting-notify-img">
                         <div class="setting-notify-message-block">
                             <span class="setting-notify-title">Time SetUp</span>
-                            <input type="text" style="border-color: aquamarine;" class="setting-notify-message" id="notifyMessage" />
+                            <input type="text" style="border-color: aquamarine;" class="setting-notify-message"
+                                id="notifyMessage" />
                         </div>
                     </div>
                 </div>
