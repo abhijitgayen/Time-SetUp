@@ -2,21 +2,21 @@ var storage = new LocalStorage();
 var blackList = [];
 var restrictionList = [];
 var notifyList = [];
-var blockBtnList = ['settingsBtn', 'restrictionsBtn', 'notifyBtn', 'aboutBtn'];
-var blockList = ['settingsBlock', 'restrictionsBlock', 'notifyBlock', 'aboutBlock'];
+var blockBtnList = ['btnSettings', 'btnLimits', 'btnNtificationSet', 'btnAboutUs'];
+var blockList = ['blockSetting', 'blockLimits', 'blockNotification', 'blockAboutUs'];
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('settingsBtn').addEventListener('click', function () {
-        setBlockEvent('settingsBtn', 'settingsBlock');
+    document.getElementById('btnSettings').addEventListener('click', function () {
+        setBlockEvent('btnSettings', 'blockSetting');
     });
-    document.getElementById('restrictionsBtn').addEventListener('click', function () {
-        setBlockEvent('restrictionsBtn', 'restrictionsBlock');
+    document.getElementById('btnLimits').addEventListener('click', function () {
+        setBlockEvent('btnLimits', 'blockLimits');
     });
-    document.getElementById('notifyBtn').addEventListener('click', function () {
-        setBlockEvent('notifyBtn', 'notifyBlock');
+    document.getElementById('btnNtificationSet').addEventListener('click', function () {
+        setBlockEvent('btnNtificationSet', 'blockNotification');
     });
-    document.getElementById('aboutBtn').addEventListener('click', function () {
-        setBlockEvent('aboutBtn', 'aboutBlock');
+    document.getElementById('btnAboutUs').addEventListener('click', function () {
+        setBlockEvent('btnAboutUs', 'blockAboutUs');
         loadVersion();
     });
     document.getElementById('clearAllData').addEventListener('click', function () {
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('addNotifySiteBtn').addEventListener('click', function () {
         addNewSiteClickHandler('addNotifySiteLbl', 'addNotifyTimeLbl', actionAddNotifyToList, 'notifyForNotifyList');
     });
-    document.getElementById('viewTimeInBadge').addEventListener('change', function () {
-        storage.saveValue(SETTINGS_VIEW_TIME_IN_BADGE, this.checked);
-    });
+    // document.getElementById('viewTimeInBadge').addEventListener('change', function () {
+    //     storage.saveValue(SETTINGS_VIEW_TIME_IN_BADGE, this.checked);
+    // });
     document.getElementById('intervalInactivity').addEventListener('change', function () {
         storage.saveValue(SETTINGS_INTERVAL_INACTIVITY, this.value);
     });
@@ -93,9 +93,9 @@ function loadSettings() {
     storage.getValue(SETTINGS_INTERVAL_RANGE, function (item) {
         document.getElementById('rangeToDays').value = item;
     });
-    storage.getValue(SETTINGS_VIEW_TIME_IN_BADGE, function (item) {
-        document.getElementById('viewTimeInBadge').checked = item;
-    });
+    // storage.getValue(SETTINGS_VIEW_TIME_IN_BADGE, function (item) {
+    //     document.getElementById('viewTimeInBadge').checked = item;
+    // });
     storage.getMemoryUse(STORAGE_TABS, function (integer) {
         document.getElementById('memoryUse').innerHTML = (integer / 1024).toFixed(2) + 'Kb';
     });
@@ -335,14 +335,14 @@ function actionAddNotifyToList(newSite, newTime) {
     } else return false;
 }
 
-function addNewSiteClickHandler(lblName, timeName, actionCheck, notifyBlock) {
+function addNewSiteClickHandler(lblName, timeName, actionCheck, blockNotification) {
     var newSite = document.getElementById(lblName).value;
     var newTime;
     if (timeName != null)
         newTime = document.getElementById(timeName).value;
     if (newSite !== '' && (newTime === undefined || (newTime !== undefined && newTime !== ''))) {
         if (!actionCheck(newSite, newTime))
-            viewNotify(notifyBlock);
+            viewNotify(blockNotification);
     }
 }
 
