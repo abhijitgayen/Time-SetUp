@@ -36,11 +36,11 @@ function backgroundCheck() {
                     activity.addTab(activeTab);
                 }
 
-                if (activity.isInBlackList(activeUrl)) {
+                if (activity.isInignorlist(activeUrl)) {
                     chrome.browserAction.setBadgeBackgroundColor({ color: '#FF0000' })
                     chrome.browserAction.setBadgeText({
                         tabId: activeTab.id,
-                        text: 'n/a'
+                        text: 'N. A.'
                     });
                 } else {
                     if (tab !== undefined) {
@@ -63,7 +63,7 @@ function mainTRacker(activeUrl, tab, activeTab) {
     if (activity.isLimitExceeded(activeUrl, tab)) {
         setBlockPageToCurrent(activeUrl);
     }
-    if (!activity.isInBlackList(activeUrl)) {
+    if (!activity.isInignorlist(activeUrl)) {
         if (activity.isNeedNotifyView(activeUrl, tab)) {
             if (isHasPermissioForNotification) {
                 showNotification(activeUrl, tab);
@@ -189,7 +189,7 @@ function addListener() {
     chrome.storage.onChanged.addListener(function(changes, namespace) {
         for (var key in changes) {
             if (key === STORAGE_BLACK_LIST) {
-                loadBlackList();
+                loadignorlist();
             }
             if (key === STORAGE_RESTRICTION_LIST) {
                 loadRestrictionList();
@@ -238,7 +238,7 @@ function deleteYesterdayTimeInterval() {
     timeIntervalList = timeIntervalList.filter(x => x.day == new Date().toLocaleDateString("en-US"));
 }
 
-function loadBlackList() {
+function loadignorlist() {
     storage.getValue(STORAGE_BLACK_LIST, function(items) {
         setting_black_list = items;
     })
@@ -286,7 +286,7 @@ function loadSettings() {
 function loadAddDataFromStorage() {
     loadTabs();
     loadTimeIntervals();
-    loadBlackList();
+    loadignorlist();
     loadRestrictionList();
     loadNotificationList();
     loadNotificationMessage();
