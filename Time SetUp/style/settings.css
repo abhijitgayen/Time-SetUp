@@ -42,10 +42,10 @@ a {
     font-size: 16px;
     margin-bottom: 3px;
     color: rgb(89, 38, 231);
-    background-image:linear-gradient(rgb(39, 252, 252),white ,rgb(166, 248, 248));
-    border-radius: 23px;
+    /* background-image:linear-gradient(rgb(39, 252, 252),white ,rgb(166, 248, 248)); */
+    border-radius: 0% 100% 100% 0%;
     display: block;
-    text-align: center;
+    text-align: left;
     padding: 6px;
 }
 
@@ -55,10 +55,11 @@ a {
     color: #55bcec;
     display: block;
     font-weight: 650;
-    border-radius: 0px;
+    /* border-radius: 0px; */
 }
 
 .navbar .active {
+    background-image:linear-gradient(rgb(39, 252, 252),white ,rgb(166, 248, 248));
     color: #065b61;
     font-weight: bold;
 }
