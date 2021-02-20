@@ -93,54 +93,41 @@ function donutChart() {
                 .attr("y", 10)
                 .attr("x", 13);
 
-            // ===========================================================================================
-            // add tooltip to mouse events on slices and labels
-            d3.selectAll('.labelName text, .slices path').call(toolTip);
-            // ===========================================================================================
-
-            // ===========================================================================================
-            // Functions
-
-            // calculates the angle for the middle of a slice
+             
+            d3.selectAll('.labelName text, .slices path').call(tipsToUse);
+        
             function midAngle(d) { return d.startAngle + (d.endAngle - d.startAngle) / 2; }
 
-            // function that creates and adds the tool tip to a selected element
-            function toolTip(selection) {
+             
+            function tipsToUse(selection) {
 
-                // add tooltip (svg circle element) when mouse enters label or slice
+                 
                 selection.on('mouseenter', function (data) {
                     d3.selectAll('.toolCircle').remove();
                     svg.append('text')
                         .attr('class', 'toolCircle')
-                        .attr('dy', -15) // hard-coded. can adjust this to adjust text vertical alignment in tooltip
-                        .html(toolTipHTML(data)) // add text to the circle.
+                        .attr('dy', -15)  
+                        .html(tipsToUseHTML(data))  
                         .style('font-size', '.9em')
-                        .style('text-anchor', 'middle'); // centres text in tooltip
+                        .style('text-anchor', 'middle');  
 
                     svg.append('circle')
                         .attr('class', 'toolCircle')
-                        .attr('r', radius * 0.55) // radius of tooltip circle
-                        .style('fill', colour(data.data[category])) // colour based on category mouse is over
+                        .attr('r', radius * 0.55)  
+                        .style('fill', colour(data.data[category])) 
                         .style('fill-opacity', 0.35);
 
                 });
 
-                // remove the tooltip when mouse leaves the slice/label
-                // selection.on('mouseout', function () {
-                //     d3.selectAll('.toolCircle').remove();
-                // });
             }
 
-            // function to create the HTML string for the tool tip. Loops through each key in data object
-            // and returns the html string key: value
-            function toolTipHTML(data) {
+            function tipsToUseHTML(data) {
 
                 var tip = '',
                     i = 0;
 
                 for (var key in data.data) {
 
-                    // if value is a number, format it as a percentage
                     var value = (!isNaN(parseFloat(data.data[key]))) ? percentFormat(data.data[key]) : data.data[key];
                     if (key === 'summary')
                         value = convertSummaryTimeToString(data.data[key]);
@@ -323,21 +310,21 @@ function drawIntervalChart(data) {
 
     var tickDistance = 4.38;
 
-    var tooltip = d3.select("#timeChart")
+    var tipsToUse = d3.select("#timeChart")
         .append("div")
         .style("opacity", 0)
         .style("display", "none")
         .style("position", "absolute")
-        .attr("class", "tooltip")
+        .attr("class", "tipsToUse")
         .style("background-color", "white")
         .style("border", "solid")
         .style("border-width", "1px")
         .style("border-radius", "5px")
         .style("padding", "5px")
 
-    // Three function that change the tooltip when user hover / move / leave a cell
+    // Three function that change the tipsToUse when user hover / move / leave a cell
     var mouseover = function (d) {
-        tooltip
+        tipsToUse
             .style("opacity", 1)
             .style("display", "block")
         d3.select(this)
@@ -346,13 +333,13 @@ function drawIntervalChart(data) {
             .style("opacity", 1)
     }
     var mousemove = function (d) {
-        tooltip
+        tipsToUse
             .html(d.domain + "<br>" + d.interval)
             .style("left", (d3.mouse(this)[0]) + 10 + "px")
             .style("top", (d3.mouse(this)[1]) + 30 + "px")
     }
     var mouseleave = function (d) {
-        tooltip
+        tipsToUse
             .style("opacity", 0)
             .style("display", "none")
         d3.select(this)
