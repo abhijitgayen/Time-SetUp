@@ -74,7 +74,7 @@
                             page. after this perticuler time ,Time SetUp stop their activity </span>
                     </div>
                     <div class="margin-top-10">
-                        <select id='intervalInactivity' style="border-color: aquamarine;" class="option">
+                        <select id='inactiveIntervalSet' style="border-color: aquamarine;" class="option">
                             <option value="30">30 seconds</option>
                             <option value="45">45 seconds</option>
                             <option value="60">1 min</option>
@@ -93,15 +93,16 @@
                             <span class="noteforuser">Activity for these domains not will tracked By Time SetUp</span>
                         </div>
                         <div class="margin-top-10">
-                            <input type="text" style=" border-color: aquamarine;"placeholder="Enter site name..." id='addBlackSiteLbl' />
-                            <input type="button" value="+" id='addBlackSiteBtn' />
+                            <input type="text" style=" border-color: aquamarine;"placeholder="Enter site name..." id='addignorList' />
+                            <input type="button" value="+" id='addignorDomainBtn' />
                         </div>
                         <div class="margin-top-10">
-                            <ul id='blackList' class="listbox" size="7" style="border-color: aquamarine;"></ul>
+                            <ul id='ignorlist' class="listbox" size="7" style="border-color: aquamarine;"></ul>
                         </div>
 
-                        <div class="notify warning" id='notifyForBlackList' hidden>
-                            Cheak again !..The site is already in the list.
+                        <div class="notify warning" id='notifyForignorlist' hidden>
+                            Cheak again !..The site
+                            <br> is already in the list.
                         </div>
                     </div>
                     <div class="margin-top-10" style="font-size: 15px;">
