@@ -65,9 +65,9 @@ class UI {
     createTotalBlock(totalTime, currentTypeOfList, counter) {
         var totalElement = document.getElementById('total');
 
-        var spanVisits = this.createElement('span', ['span-visits', 'tooltip', 'visits'], counter !== undefined ? counter : 0);
-        var visitsTooltip = this.createElement('span', ['noteforuser'], 'Count of visits');
-        spanVisits.appendChild(visitsTooltip);
+        var spanVisits = this.createElement('span', ['span-visits', 'tipsToUse', 'visits'], counter !== undefined ? counter : 0);
+        var visitstipsToUse = this.createElement('span', ['noteforuser'], 'Count of visits');
+        spanVisits.appendChild(visitstipsToUse);
 
         var spanPercentage = this.createElement('span', ['span-percentage'], '100 %');
 
@@ -98,7 +98,7 @@ class UI {
         this.getTableOfSite().appendChild(document.createElement('hr'));
     }
 
-    setActiveTooltipe(currentTab) {
+    setActivetipsToUsee(currentTab) {
         if (currentTab !== '') {
             var element = document.getElementById(currentTab);
             if (element !== null) {
@@ -149,7 +149,7 @@ class UI {
 
     addLineToTableOfSite(tab, currentTab, summaryTime, typeOfList, counter, blockName) {
         var div = document.createElement('div');
-        div.addEventListener('mouseenter', function() {
+        div.addEventListener('mouseenter', function () {
             if (document.getElementById('chart').innerHTML !== '') {
                 var item = document.getElementById(tab.url);
                 if (item !== null) {
@@ -161,7 +161,7 @@ class UI {
                 }
             }
         });
-        div.addEventListener('mouseout', function() {
+        div.addEventListener('mouseout', function () {
             if (document.getElementById('chart').innerHTML !== '') {
                 var item = document.getElementById(tab.url);
                 if (item !== null) {
@@ -190,9 +190,9 @@ class UI {
             imgCurrentDomain.setAttribute('height', 17);
             imgCurrentDomain.classList.add('margin-left-5');
             divForImage.appendChild(imgCurrentDomain);
-            var currentDomainTooltip = this.createElement('span', ['noteforuser'], 'Current domain');
-            divForImage.classList.add('tooltip', 'current-url');
-            divForImage.appendChild(currentDomainTooltip);
+            var currentDomaintipsToUse = this.createElement('span', ['noteforuser'], 'Current domain');
+            divForImage.classList.add('tipsToUse', 'current-url');
+            divForImage.appendChild(currentDomaintipsToUse);
             spanUrl.appendChild(divForImage);
         }
 
@@ -200,21 +200,21 @@ class UI {
             if (restrictionList !== undefined && restrictionList.length > 0) {
                 var item = restrictionList.find(x => isDomainEquals(x.domain, tab.url));
                 if (item !== undefined) {
-                    var divLimit = this.createElement('div', ['tooltip', 'inline-block']);
-                    var limitIcon = this.createElement('img', ['margin-left-5', 'tooltip']);
+                    var divLimit = this.createElement('div', ['tipsToUse', 'inline-block']);
+                    var limitIcon = this.createElement('img', ['margin-left-5', 'tipsToUse']);
                     limitIcon.height = 18;
                     limitIcon.src = '/icons/limit.png';
-                    var tooltip = this.createElement('span', ['noteforuser'], "Daily limit is " + convertShortSummaryTimeToLongString(item.time));
-                    divLimit = this.appendChild(divLimit, [limitIcon, tooltip]);
+                    var tipsToUse = this.createElement('span', ['noteforuser'], "Daily limit is " + convertShortSummaryTimeToLongString(item.time));
+                    divLimit = this.appendChild(divLimit, [limitIcon, tipsToUse]);
                     spanUrl.appendChild(divLimit);
                 }
             }
         }
 
-        var spanVisits = this.createElement('span', ['span-visits', 'tooltip', 'visits'], counter !== undefined ? counter : 0);
-        var visitsTooltip = this.createElement('span', ['noteforuser'], 'Count of visits');
+        var spanVisits = this.createElement('span', ['span-visits', 'tipsToUse', 'visits'], counter !== undefined ? counter : 0);
+        var visitstipsToUse = this.createElement('span', ['noteforuser'], 'Count of visits');
 
-        spanVisits.appendChild(visitsTooltip);
+        spanVisits.appendChild(visitstipsToUse);
 
         var spanPercentage = this.createElement('span', ['span-percentage'], getPercentage(summaryTime));
         var spanTime = this.createElement('span', ['span-time']);
@@ -230,7 +230,7 @@ class UI {
     createElementsForTotalTime(summaryTime, typeOfList, parentElement) {
         var arr = getArrayTime(summaryTime);
         var isNextPartActiv = false;
-        var getCssClass = function(item) {
+        var getCssClass = function (item) {
             if (item > 0) {
                 isNextPartActiv = true;
                 return ['span-active-time'];
@@ -254,7 +254,7 @@ class UI {
         if (document.getElementById('expander') === null) {
             var div = this.createElement('div', ['expander'], 'Show all');
             div.id = 'expander';
-            div.addEventListener('click', function() {
+            div.addEventListener('click', function () {
                 ui.expand();
             });
             this.getTableOfSite().appendChild(div);
@@ -293,11 +293,11 @@ class UI {
 
         div.append(tableForDaysBlock);
 
-        document.getElementById('dateFrom').addEventListener('change', function() {
+        document.getElementById('dateFrom').addEventListener('change', function () {
             getTabsByDays(tabsFromStorage);
         });
 
-        document.getElementById('dateTo').addEventListener('change', function() {
+        document.getElementById('dateTo').addEventListener('change', function () {
             getTabsByDays(tabsFromStorage);
         });
     }
@@ -343,7 +343,7 @@ class UI {
                 div.id = days[i].date + '_block';
                 parent.appendChild(div);
 
-                document.getElementById(days[i].date).addEventListener('click', function() {
+                document.getElementById(days[i].date).addEventListener('click', function () {
                     var element = document.getElementById(this.id + '_block');
                     element.innerHTML = null;
                     getTabsFromStorageByDay(this.id, this.id + '_block')
