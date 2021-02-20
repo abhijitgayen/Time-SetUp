@@ -1,5 +1,5 @@
 var storage = new LocalStorage();
-var blackList = [];
+var ignorlist = [];
 var restrictionList = [];
 var notifyList = [];
 var blockBtnList = ['btnSettings', 'btnLimits', 'btnNtificationSet', 'btnAboutUs'];
@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('file-input-backup').addEventListener('change', function (e) {
         restore(e);
     });
-    document.getElementById('addBlackSiteBtn').addEventListener('click', function () {
-        addNewSiteClickHandler('addBlackSiteLbl', null, actionAddBlackSiteToList, 'notifyForBlackList');
+    document.getElementById('addignorDomainBtn').addEventListener('click', function () {
+        addNewSiteClickHandler('addignorList', null, actionAddBlackSiteToList, 'notifyForignorlist');
     });
     document.getElementById('addRestrictionSiteBtn').addEventListener('click', function () {
         addNewSiteClickHandler('addRestrictionSiteLbl', 'addRestrictionTimeLbl', actionAddRectrictionToList, 'notifyForRestrictionList');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // document.getElementById('viewTimeInBadge').addEventListener('change', function () {
     //     storage.saveValue(SETTINGS_VIEW_TIME_IN_BADGE, this.checked);
     // });
-    document.getElementById('intervalInactivity').addEventListener('change', function () {
+    document.getElementById('inactiveIntervalSet').addEventListener('change', function () {
         storage.saveValue(SETTINGS_INTERVAL_INACTIVITY, this.value);
     });
     document.getElementById('username').addEventListener('change', function () {
@@ -88,7 +88,7 @@ function setBlockEvent(btnName, blockName) {
 
 function loadSettings() {
     storage.getValue(SETTINGS_INTERVAL_INACTIVITY, function (item) {
-        document.getElementById('intervalInactivity').value = item;
+        document.getElementById('inactiveIntervalSet').value = item;
     });
     storage.getValue(SETTINGS_INTERVAL_RANGE, function (item) {
         document.getElementById('rangeToDays').value = item;
@@ -104,9 +104,9 @@ function loadSettings() {
     });
     storage.getValue(STORAGE_BLACK_LIST, function (items) {
         if (items !== undefined)
-            blackList = items;
-        else blackList = [];
-        viewBlackList(items);
+            ignorlist = items;
+        else ignorlist = [];
+        viewignorlist(items);
     });
     storage.getValue(STORAGE_RESTRICTION_LIST, function (items) {
         restrictionList = items;
@@ -130,7 +130,7 @@ function loadVersion() {
     document.getElementById('version').innerText = 'v' + version;
 }
 
-function viewBlackList(items) {
+function viewignorlist(items) {
     if (items !== undefined) {
         for (var i = 0; i < items.length; i++) {
             addDomainToListBox(items[i]);
@@ -308,12 +308,12 @@ function actionAddRectrictionToList(newSite, newTime) {
 function actionAddBlackSiteToList(newSite) {
     if (!isContainsBlackSite(newSite)) {
         addDomainToListBox(newSite);
-        if (blackList === undefined)
-            blackList = [];
-        blackList.push(newSite);
-        document.getElementById('addBlackSiteLbl').value = '';
+        if (ignorlist === undefined)
+            ignorlist = [];
+        ignorlist.push(newSite);
+        document.getElementById('addignorList').value = '';
 
-        updateBlackList();
+        updateignorlist();
 
         return true;
     } else return false;
@@ -355,7 +355,7 @@ function addDomainToListBox(domain) {
     del.addEventListener('click', function (e) {
         deleteBlackSite(e);
     });
-    document.getElementById('blackList').appendChild(li).appendChild(del);
+    document.getElementById('ignorlist').appendChild(li).appendChild(del);
 }
 
 function addDomainToEditableListBox(entity, elementId, actionEdit, actionDelete, actionUpdateTimeFromList, actionUpdateList) {
@@ -408,9 +408,9 @@ function addDomainToEditableListBox(entity, elementId, actionEdit, actionDelete,
 
 function deleteBlackSite(e) {
     var targetElement = e.path[1];
-    blackList.splice(blackList.indexOf(targetElement.innerText), 1);
-    document.getElementById('blackList').removeChild(targetElement);
-    updateBlackList();
+    ignorlist.splice(ignorlist.indexOf(targetElement.innerText), 1);
+    document.getElementById('ignorlist').removeChild(targetElement);
+    updateignorlist();
 }
 
 function deleteRestrictionSite(e) {
@@ -469,7 +469,7 @@ function isContainsNotificationSite(domain) {
 }
 
 function isContainsBlackSite(domain) {
-    return blackList.find(x => x == domain) != undefined;
+    return ignorlist.find(x => x == domain) != undefined;
 }
 
 function updateItemFromResctrictoinList(domain, time) {
@@ -480,8 +480,8 @@ function updateItemFromNotifyList(domain, time) {
     notifyList.find(x => x.domain === domain).time = convertTimeToSummaryTime(time);
 }
 
-function updateBlackList() {
-    storage.saveValue(STORAGE_BLACK_LIST, blackList);
+function updateignorlist() {
+    storage.saveValue(STORAGE_BLACK_LIST, ignorlist);
 }
 
 function updateRestrictionList() {
