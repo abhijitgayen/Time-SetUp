@@ -51,29 +51,29 @@ var stat = {
     },
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     ui.setPreloader();
 
-    storage.getValue(SETTINGS_INTERVAL_RANGE, function(item) { setting_range_days = item; });
-    document.getElementById('btnToday').addEventListener('click', function() {
+    storage.getValue(SETTINGS_INTERVAL_RANGE, function (item) { setting_range_days = item; });
+    document.getElementById('btnToday').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.ToDay;
         ui.setUIForToday();
         getDataFromStorage();
     });
-    document.getElementById('donutChartBtn').addEventListener('click', function() {
+    document.getElementById('donutChartBtn').addEventListener('click', function () {
         ui.setUIForDonutChart();
         getDataFromStorage();
     });
-    document.getElementById('heatMapChartBtn').addEventListener('click', function() {
+    document.getElementById('heatMapChartBtn').addEventListener('click', function () {
         ui.setUIForTimeChart();
         getTimeIntervalList();
     });
-    document.getElementById('btnAll').addEventListener('click', function() {
+    document.getElementById('btnAll').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.All;
         ui.setUIForAll();
         getDataFromStorage();
     });
-    document.getElementById('btnByDays').addEventListener('click', function() {
+    document.getElementById('btnByDays').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.ByDays;
         ui.setUIForByDays(setting_range_days);
         getDataFromStorageByDays();
@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
 firstInitPage();
 
 function firstInitPage() {
-    chrome.runtime.getBackgroundPage(function(bg) {
+    chrome.runtime.getBackgroundPage(function (bg) {
         tabsFromBackground = bg.tabs;
         currentTypeOfList = TypeListEnum.ToDay;
         getLimitsListFromStorage();
         getDataFromStorage();
-        storage.getValue(SETTINGS_SHOW_HINT, function(item) {
+        storage.getValue(SETTINGS_SHOW_HINT, function (item) {
             if (item)
                 document.getElementById('hintForUsers').classList.remove('hide');
         });
@@ -145,7 +145,7 @@ function getTabsFromStorage(tabs) {
 
     var counterOfSite;
     if (currentTypeOfList === TypeListEnum.All) {
-        targetTabs = tabs.sort(function(a, b) {
+        targetTabs = tabs.sort(function (a, b) {
             return b.summaryTime - a.summaryTime;
         });
 
@@ -164,7 +164,7 @@ function getTabsFromStorage(tabs) {
         targetTabs = tabs.filter(x => x.days.find(s => s.date === today));
         counterOfSite = targetTabs.length;
         if (targetTabs.length > 0) {
-            targetTabs = targetTabs.sort(function(a, b) {
+            targetTabs = targetTabs.sort(function (a, b) {
                 return b.days.find(s => s.date === today).summary - a.days.find(s => s.date === today).summary;
             });
 
@@ -213,7 +213,7 @@ function getTabsFromStorage(tabs) {
     ui.addHrAfterTableOfSite();
     ui.createTotalBlock(totalTime, currentTypeOfList, summaryCounter);
     ui.drawChart(tabsForChart);
-    ui.setActiveTooltipe(currentTab);
+    ui.setActivetipsToUsee(currentTab);
 
     ui.removePreloader();
 }
@@ -221,9 +221,9 @@ function getTabsFromStorage(tabs) {
 function getTabsForTimeChart(timeIntervals) {
     var resultArr = [];
     if (timeIntervals != undefined) {
-        timeIntervals.forEach(function(data) {
+        timeIntervals.forEach(function (data) {
             if (data.day == today) {
-                data.intervals.forEach(function(interval) {
+                data.intervals.forEach(function (interval) {
                     resultArr.push({ 'domain': data.domain, 'interval': interval });
                 });
             }
@@ -249,7 +249,7 @@ function getTabsFromStorageForExpander(tabs) {
     tabsFromStorage = tabs;
     targetTabs = [];
 
-    targetTabs = tabs.sort(function(a, b) {
+    targetTabs = tabs.sort(function (a, b) {
         return b.summaryTime - a.summaryTime;
     });
 
@@ -279,20 +279,20 @@ function getTabsFromStorageForExpander(tabs) {
 function getTotalTime(tabs) {
     var total;
     if (currentTypeOfList === TypeListEnum.ToDay) {
-        var summaryTimeList = tabs.map(function(a) { return a.days.find(s => s.date === today).summary; });
-        total = summaryTimeList.reduce(function(a, b) { return a + b; })
+        var summaryTimeList = tabs.map(function (a) { return a.days.find(s => s.date === today).summary; });
+        total = summaryTimeList.reduce(function (a, b) { return a + b; })
     }
     if (currentTypeOfList === TypeListEnum.All) {
-        var summaryTimeList = tabs.map(function(a) { return a.summaryTime; });
-        total = summaryTimeList.reduce(function(a, b) { return a + b; })
+        var summaryTimeList = tabs.map(function (a) { return a.summaryTime; });
+        total = summaryTimeList.reduce(function (a, b) { return a + b; })
     }
     return total;
 }
 
 function getTotalTimeForDay(day, tabs) {
     var total;
-    var summaryTimeList = tabs.map(function(a) { return a.days.find(s => s.date === day).summary; });
-    total = summaryTimeList.reduce(function(a, b) { return a + b; })
+    var summaryTimeList = tabs.map(function (a) { return a.days.find(s => s.date === day).summary; });
+    total = summaryTimeList.reduce(function (a, b) { return a + b; })
     return total;
 }
 
@@ -333,14 +333,14 @@ function addTabOthersForChart(tabsForChart, summaryTime) {
 
 function getFirstDay() {
     var array = [];
-    tabsFromStorage.map(function(a) {
-        return a.days.map(function(a) {
+    tabsFromStorage.map(function (a) {
+        return a.days.map(function (a) {
             if (array.indexOf(a.date) === -1)
                 return array.push(a.date);
         });
     });
 
-    array = array.sort(function(a, b) {
+    array = array.sort(function (a, b) {
         return new Date(a) - new Date(b);
     });
 
@@ -367,7 +367,7 @@ function setStatData(array) {
         });
     });
 
-    arrayAscByTime = arrayAscByTime.sort(function(a, b) {
+    arrayAscByTime = arrayAscByTime.sort(function (a, b) {
         return a.total - b.total;
     });
     stat.inActiveDay = new Date(arrayAscByTime[0].date).toLocaleDateString('ru-RU');
@@ -402,11 +402,11 @@ function getTabsByDays(tabs) {
                     });
             });
         });
-        listOfDays = listOfDays.sort(function(a, b) {
+        listOfDays = listOfDays.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
         });
 
-        var getDaysArray = function(start, end) {
+        var getDaysArray = function (start, end) {
             let first = start;
             let second = end;
             var arr = [];
@@ -431,7 +431,7 @@ function getTabsFromStorageByDay(day, blockName) {
 
     targetTabs = tabsFromStorage.filter(x => x.days.find(s => s.date === day));
     if (targetTabs.length > 0) {
-        targetTabs = targetTabs.sort(function(a, b) {
+        targetTabs = targetTabs.sort(function (a, b) {
             return b.days.find(s => s.date === day).summary - a.days.find(s => s.date === day).summary;
         });
 
