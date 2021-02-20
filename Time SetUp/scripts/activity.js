@@ -24,7 +24,7 @@ class Activity {
                     this.setCurrentActiveTab(domain);
                     var tabUrl = this.getTab(domain);
                     if (tabUrl !== undefined)
-                        tabUrl.incCounter();                
+                        tabUrl.incCounter();
                     this.addTimeInterval(domain);
                 }
             }
@@ -136,7 +136,7 @@ class Activity {
         currentTab = '';
     }
 
-    isNeedNotifyView(domain, tab){
+    isNeedNotifyView(domain, tab) {
         if (setting_notification_list !== undefined && setting_notification_list.length > 0) {
             var item = setting_notification_list.find(o => isDomainEquals(this.extractHostname(o.domain), this.extractHostname(domain)));
             if (item !== undefined) {
