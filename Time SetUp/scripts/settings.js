@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
         storage.saveValue(SETTINGS_INTERVAL_INACTIVITY, this.value);
     });
     document.getElementById('username').addEventListener('change', function () {
-        chrome.storage.local.get('username',function(){
-            var newusername=document.getElementById('username').value;
-            chrome.storage.local.set({'username':newusername});
+        chrome.storage.local.get('username', function () {
+            var newusername = document.getElementById('username').value;
+            chrome.storage.local.set({ 'username': newusername });
 
         })
     });
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('grantPermissionForNotifications').addEventListener('click', function () {
         grantPermissionForNotifications();
     });
-     
+
     $('.clockpicker').clockpicker();
 
     loadSettings();
@@ -223,14 +223,14 @@ function restore(e) {
             let content = readerEvent.target.result;
             let tabs = JSON.parse(content);
             chrome.extension.getBackgroundPage().tabs = tabs;
-            storage.saveTabs(tabs, function(){
+            storage.saveTabs(tabs, function () {
                 storage.getMemoryUse(STORAGE_TABS, function (integer) {
                     document.getElementById('memoryUse').innerHTML = (integer / 1024).toFixed(2) + 'Kb';
                 });
                 viewNotify('notify-restore');
-                
+
             });
-            
+
         }
     } else {
         viewNotify('notify-restore-failed');
