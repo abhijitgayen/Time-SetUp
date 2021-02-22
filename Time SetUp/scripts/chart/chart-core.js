@@ -1,7 +1,7 @@
 function donutChart() {
     var width,
         height,
-        margin = { top: 10, right: 10, bottom: 10, left: 10 },
+        margin = { top: 9, right: 9, bottom: 9, left: 9 },
         colour = d3.scaleOrdinal(d3.schemeCategory20), // colour scheme
         variable, // value in data that will dictate proportions on chart
         category, // compare data by
@@ -13,7 +13,6 @@ function donutChart() {
     function chart(selection) {
         selection.each(function (data) {
             // generate chart
-
             // ===========================================================================================
             // Set up constructors for making donut. See https://github.com/d3/d3-shape/blob/master/README.md
             var radius = 135;
@@ -22,7 +21,6 @@ function donutChart() {
             var pie = d3.pie()
                 .value(function (d) { return floatFormat(d[variable]); })
                 .sort(null);
-
             // contructs and arc generator. This will be used for the donut. The difference between outer and inner
             // radius will dictate the thickness of the donut
             var arc = d3.arc()
