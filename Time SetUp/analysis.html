@@ -11,21 +11,21 @@
 <body>
     <div id="preloader" class="preloader">
         <div class="preloader__image">
-            <div class="title">Loading...</div>
+            <div class="title">Loading........</div>
         </div>
     </div>
     <img id="image" src="icons/clock256px.png">
     <svg class="height-0">
-      <filter id="dropShadow">
-         <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-         <feOffset dx="0" dy="1" />
-         <feMerge>
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" />
-         </feMerge>
-      </filter>
-   </svg>
-    <div id="extensionTitle">
+        <filter id="dropShadow">
+           <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+           <feOffset dx="0" dy="1" />
+           <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+           </feMerge>
+        </filter>
+     </svg>
+    <div>
         <p class="title" style="font-size: 23px;
         text-align: center;
         font-family: cursive;
@@ -33,9 +33,9 @@
         text-shadow:1px 2px black;">Analysis of Spending time</p>
     </div>
     <div id="buttons" class="btn-block">
-        <a class="active" id="btnToday">Today</a>
-        <a id="btnAll">Overall</a>
-        <a id="btnByDays">By days</a>
+        <a class="active" id="toDayBtn">Today</a>
+        <a id="overAllBtn">Overall</a>
+        <a id="byDaysBtn">By days</a>
        
     <div id="stats" class="hide">
         <p class="table-header">Overall Stats Of Spending Times On webpages</p>
@@ -93,12 +93,12 @@
         </div>
     </div>
     <div id="blockForChartBtn">
-        <a class="button active chart-btn chart-btn-donut" id="donutChartBtn">Chart respect to websites </a>
-       <a class="button chart-btn chart-btn-heatmap" id="heatMapChartBtn">Chart respect to times</a>
+        <a class="button active chart-btn chart-btn-donut" id="circuarChartBtn">Chart respect to websites </a>
+       <a class="button chart-btn chart-btn-dnaChart" id="dnaChartBtn">Chart respect to times</a>
     </div>
     <div id="chart"></div>
-    <div id="labelForTimeInterval" class="warning hide">
-        <label>Only time intervals greater than 3 seconds are shown</label>
+    <div id="OnlyTimeSec" class="warning hide">
+        <label>Here Only time intervals greater than 3 seconds are shown</label>
     </div>
     <div id="timeChart"></div>
     <div id="resultTable" class="list-of-site"></div>
