@@ -131,29 +131,27 @@ hr {
   border-radius: 10px;
   background-color: #555;
 }
-
 .title {
   font-size: 12px;
   font-weight: 650;
   margin: 2px;
   text-align: center;
 }
-
 a {
-  color: rgb(195, 194, 194);
-  padding: 4px 5px;
+  width: 20%;
   text-align: center;
   display: inline-block;
+  color: rgb(195, 194, 194);
   font-size: 12px;
   font-weight: 600;
   margin: 4px 7px;
+  padding: 4px 5px;
   transition-duration: 0.4s;
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 2px solid rgb(195, 194, 194);
   background: transparent;
-  width: 20%;
 }
 
 a:hover {
