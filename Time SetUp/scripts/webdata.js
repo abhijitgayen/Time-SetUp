@@ -55,43 +55,31 @@ document.addEventListener('DOMContentLoaded', function () {
     ui.setPreloader();
 
     storage.getValue(SETTINGS_INTERVAL_RANGE, function (item) { setting_range_days = item; });
-    document.getElementById('btnToday').addEventListener('click', function () {
+    document.getElementById('toDayBtn').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.ToDay;
         ui.setUIForToday();
         getDataFromStorage();
     });
-    document.getElementById('donutChartBtn').addEventListener('click', function () {
-        ui.setUIForDonutChart();
-        getDataFromStorage();
-    });
-    document.getElementById('heatMapChartBtn').addEventListener('click', function () {
-        ui.setUIForTimeChart();
-        getTimeIntervalList();
-    });
-    document.getElementById('btnAll').addEventListener('click', function () {
+    document.getElementById('overAllBtn').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.All;
         ui.setUIForAll();
         getDataFromStorage();
     });
-    document.getElementById('btnByDays').addEventListener('click', function () {
+    document.getElementById('byDaysBtn').addEventListener('click', function () {
         currentTypeOfList = TypeListEnum.ByDays;
         ui.setUIForByDays(setting_range_days);
         getDataFromStorageByDays();
-    });/*
-    document.getElementById('closeHintBtn').addEventListener('click', function() {
-        document.getElementById('hintForUsers').classList.add('hide');
-        storage.saveValue(SETTINGS_SHOW_HINT, false);
-    });*/
-    storage.saveValue(SETTINGS_SHOW_HINT, false);/*
-    document.getElementById('settings').addEventListener('click', function() {
-        if (chrome.runtime.openOptionsPage) {
-            chrome.runtime.openOptionsPage();
-        } else {
-            window.open(chrome.runtime.getURL('options.html'));
-        }
-    });*/
+    });
+    document.getElementById('circuarChartBtn').addEventListener('click', function () {
+        ui.setUIForDonutChart();
+        getDataFromStorage();
+    });
+    document.getElementById('dnaChartBtn').addEventListener('click', function () {
+        ui.setUIForTimeChart();
+        getTimeIntervalList();
+    });
+    storage.saveValue(SETTINGS_SHOW_HINT, false); 
 });
-
 firstInitPage();
 
 function firstInitPage() {
