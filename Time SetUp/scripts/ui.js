@@ -6,35 +6,35 @@ class UI {
     }
 
     setUIForToday() {
-        document.getElementById('btnToday').classList.add('active');
-        document.getElementById('btnAll').classList.remove('active');
-        document.getElementById('btnByDays').classList.remove('active');
+        document.getElementById('toDayBtn').classList.add('active');
+        document.getElementById('overAllBtn').classList.remove('active');
+        document.getElementById('byDaysBtn').classList.remove('active');
         document.getElementById('blockForChartBtn').classList.remove('hide');
         document.getElementById('stats').classList.add('hide');
-        document.getElementById('labelForTimeInterval').classList.add('hide');
+        document.getElementById('OnlyTimeSec').classList.add('hide');
         this.setUIForDonutChart();
 
         this.clearUI();
     }
 
     setUIForAll() {
-        document.getElementById('btnAll').classList.add('active');
-        document.getElementById('btnToday').classList.remove('active');
-        document.getElementById('btnByDays').classList.remove('active');
+        document.getElementById('overAllBtn').classList.add('active');
+        document.getElementById('toDayBtn').classList.remove('active');
+        document.getElementById('byDaysBtn').classList.remove('active');
         document.getElementById('blockForChartBtn').classList.add('hide');
         document.getElementById('stats').classList.remove('hide');
-        document.getElementById('labelForTimeInterval').classList.add('hide');
+        document.getElementById('OnlyTimeSec').classList.add('hide');
 
         this.clearUI();
     }
 
     setUIForByDays(range) {
-        document.getElementById('btnByDays').classList.add('active');
-        document.getElementById('btnAll').classList.remove('active');
-        document.getElementById('btnToday').classList.remove('active');
+        document.getElementById('byDaysBtn').classList.add('active');
+        document.getElementById('overAllBtn').classList.remove('active');
+        document.getElementById('toDayBtn').classList.remove('active');
         document.getElementById('blockForChartBtn').classList.add('hide');
         document.getElementById('stats').classList.add('hide');
-        document.getElementById('labelForTimeInterval').classList.add('hide');
+        document.getElementById('OnlyTimeSec').classList.add('hide');
 
         this.clearUI();
         this.addBlockForCalendar(range);
@@ -49,17 +49,17 @@ class UI {
     }
 
     setUIForDonutChart() {
-        document.getElementById('donutChartBtn').classList.add('active');
-        document.getElementById('heatMapChartBtn').classList.remove('active');
+        document.getElementById('circuarChartBtn').classList.add('active');
+        document.getElementById('dnaChartBtn').classList.remove('active');
         document.getElementById('timeChart').innerHTML = null;
-        document.getElementById('labelForTimeInterval').classList.add('hide');
+        document.getElementById('OnlyTimeSec').classList.add('hide');
     }
 
     setUIForTimeChart() {
-        document.getElementById('donutChartBtn').classList.remove('active');
-        document.getElementById('heatMapChartBtn').classList.add('active');
+        document.getElementById('circuarChartBtn').classList.remove('active');
+        document.getElementById('dnaChartBtn').classList.add('active');
         document.getElementById('chart').innerHTML = null;
-        document.getElementById('labelForTimeInterval').classList.remove('hide');
+        document.getElementById('OnlyTimeSec').classList.remove('hide');
     }
 
     createTotalBlock(totalTime, currentTypeOfList, counter) {
