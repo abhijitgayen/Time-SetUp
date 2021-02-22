@@ -16,10 +16,6 @@ body {
   overflow-y: auto;
 }
 
-#extensionTitle {
-  margin-top: -20px;
-}
-
 .inline-flex {
   display: flex;
   height: 23px;
@@ -391,8 +387,8 @@ input[type="checkbox"] {
   background-image: url(/icons/pie-chart.png);
 }
 
-.chart-btn-heatmap {
-  background-image: url(/icons/heat-map-16.png);
+.chart-btn-dnaChart {
+  background-image: url(/icons/dna-chart.png);
 }
 
 #statsBlock {
@@ -455,11 +451,10 @@ input[type="checkbox"] {
 }
 
 .warning {
-  color: #9b9b9b;
-  font-size: 8px;
+  color: #0aa1c7;
+  font-size: 12px;
   text-align: center;
 }
-
 .preloader {
   position: fixed;
   left: 0;
